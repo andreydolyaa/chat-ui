@@ -8,12 +8,13 @@ const STORAGE_KEY = 'chatapp'
 
 export default function Login({ onUserReg }) {
     const userRef = useRef();
+    const colorRef = useRef();
     const history = useHistory();
 
 
     function registerUser(event) {
         event.preventDefault();
-        const user = { name: userRef.current.value, id: uuidv4() };
+        const user = { name: userRef.current.value, color: colorRef.current.value, id: uuidv4() };
         storageService.store(STORAGE_KEY, user);
         onUserReg(user);
         history.push('/chat-list');
@@ -22,9 +23,12 @@ export default function Login({ onUserReg }) {
 
     return (
         <form onSubmit={registerUser} className="login">
-            <label htmlFor="user">Select a Username:
-                    <input type="text" required ref={userRef} />
-                    <button>CONNECT</button>
+            <label htmlFor="user">
+                <p>Select a Username:</p>
+                <input type="text" required ref={userRef} />
+                <p>Select Name Color:</p>
+                <input type="color" className="color-pick" required ref={colorRef} />
+                <button>CONNECT</button>
             </label>
         </form>
     )

@@ -1,0 +1,290 @@
+.chat-window{
+    width:1400px;
+    margin:2rem auto;
+    border:1px solid rgb(202, 202, 202);
+    border-radius: 3px;
+    height:80vh;
+    overflow: scroll;
+    overflow-x: none;
+    .mobile-input{
+        display:flex;
+    }
+    h3{
+        padding:15px 0px 15px 10px;
+        background-color:  rgb(0, 192, 118);
+        // background-image: url('../assets/2578740.jpg');
+        // background-repeat: no-repeat;
+        // background-position-y: 20%;
+        color:white;
+        position: fixed;
+        width:1399px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            margin-right:2rem;
+            color:rgb(255, 255, 255);
+            font-size:10px;
+            align-items: center;
+            margin-top:5px;
+        }
+    }
+    .msg-window{
+
+        .user-msg{
+            display:flex;
+            padding:15px 0px 0px 10px;
+            .msg{
+                margin-left:8px;
+                max-width:1250px;
+                overflow-wrap: break-word;
+            }
+        }
+        .msg-name{
+            font-weight: bold;
+        }
+    }
+    form{
+        margin-top:1px;
+        display:flex;
+        align-items: center;
+        position: fixed;
+        bottom:10px;
+        .smiley{
+            border:2px dotted  rgb(0, 192, 118);
+            width:40px;
+            height:40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right:5px;
+            border-radius: 3px;
+            color:rgb(0, 192, 118);
+            cursor: pointer;
+            transition: .1s;
+        }
+        .smiley:hover{
+            color:rgb(0, 92, 57);
+        }
+        input{
+            width:1100px;
+            height:40px;
+            outline: none;
+            margin-right:5px;
+            font-size:1rem;
+            border:2px dotted rgb(0, 192, 118);
+            border-radius: 3px;
+            padding:15px;
+        }
+        button{
+            outline: none;
+            width:250px;
+            height:40px;
+            font-size:1.2rem;
+            border-radius: 3px;
+        }
+    }
+}
+
+@media(max-width:1456px){
+    .chat-window{
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:14px;
+                    max-width:900px;
+                }
+            }
+            .msg-name{
+                font-size:14px;
+            }
+        }
+        width:1000px;
+        h3{
+            width:999px;
+        }
+        form{
+            input{
+                width:800px
+            }
+            button{
+                width:150px;
+            }
+        }
+    }
+}
+@media(max-width:1030px){
+    .chat-window{
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:14px;
+                    max-width:600px;
+                }
+            }
+            .msg-name{
+                font-size:14px;
+            }
+        }
+        width:700px;
+        h3{
+            width:699px;
+        }
+        form{
+            input{
+                width:500px
+            }
+            button{
+                width:150px;
+            }
+        }
+    }
+}
+@media(max-width:725px){
+    .chat-window{
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:14px;
+                    max-width:400px;
+                }
+            }
+            .msg-name{
+                font-size:14px;
+            }
+        }
+        width:500px;
+        h3{
+            width:499px;
+        }
+        form{
+            input{
+                width:350px
+            }
+            button{
+                width:100px;
+            }
+        }
+    }
+}
+@media(max-width:525px){
+    .chat-window{
+        width:450px;
+        height:65vh;
+        margin:1rem auto;
+        h3{
+            width:447px;
+            height:25px;
+            font-size:12px;
+            padding:5px;
+        }
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:12px;
+                    max-width:320px;
+                }
+            }
+            .msg-name{
+                font-size:12px;
+            }
+        }
+        form{
+            flex-direction: column;
+            align-items: flex-start;
+            input{
+                width:450px;
+            }
+            button{
+                margin-top:5px;
+                width:450px;
+            }
+            .mobile-input{
+                display:flex;
+                input{
+                    width:405px;
+                }
+            }
+        }
+    }
+}
+@media(max-width:456px){
+    .chat-window{
+        width:350px;
+        height:65vh;
+        h3{
+            width:348px;
+            height:25px;
+            font-size:12px;
+            padding:5px;
+        }
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:12px;
+                    max-width:220px;
+                }
+            }
+            .msg-name{
+                font-size:12px;
+            }
+        }
+        form{
+            flex-direction: column;
+            align-items: flex-start;
+            input{
+                width:310px;
+            }
+            button{
+                margin-top:5px;
+                width:350px;
+            }
+            .mobile-input{
+                display:flex;
+                input{
+                    width:305px;
+                }
+            }
+        }
+    }
+}
+@media(max-width:357px){
+    .chat-window{
+        width:300px;
+        height:65vh;
+        h3{
+            width:298px;
+            height:25px;
+            font-size:12px;
+            padding:5px;
+        }
+        .msg-window{
+            .user-msg{
+                .msg{
+                    font-size:12px;
+                    max-width:220px;
+                }
+            }
+            .msg-name{
+                font-size:12px;
+            }
+        }
+        form{
+            flex-direction: column;
+            align-items: flex-start;
+            input{
+                width:310px;
+            }
+            button{
+                margin-top:5px;
+                width:305px;
+            }
+            .mobile-input{
+                display:flex;
+                input{
+                    width:260px;
+                }
+            }
+        }
+    }
+}
