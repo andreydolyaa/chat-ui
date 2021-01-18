@@ -2,10 +2,11 @@
 
 export const chatBotService = {
     sendMessage,
+    stopBotService,
     getRandomInt
 }
 
-
+var gIsWorking = true;
 var gData = [
     { name: 'johnWiCK', msg: 'Yo ppl, whats up?', color: '#00BD8D', roomId: 'general' },
     { name: 'johnWiCK', msg: 'i like this chat app :>', color: '#00BD8D', roomId: 'general' },
@@ -47,8 +48,8 @@ var gData = [
     { name: 'ADMIN', msg: 'enjoy our chat! (DONT SHARE PERSONAL DATA, ITS STILL UNENCRYPTED :-) )', color: '#FF0000' },
     { name: 'ADMIN', msg: 'Don\'t spam please!', color: '#FF0000' },
     { name: 'ANDREY_DOLYA_🦊', msg: 'checkout my gitHub https://github.com/andreydolyaa?tab=repositories', color: '#5D00FF' },
-    { name: 'ANDREY_DOLYA_🦊', msg: 'i\'m look for my first opportunity as a Frontend or Fullstack developer, i just love to code & learn new stuff, and i want to becomse a MASTER in this field! i just need the chance to prove myself! contact me on dolya7kk@gmail.com 🤩', color: '#5D00FF', admin: true },
-    { name: 'ANDREY_DOLYA_🦊', msg: 'i\'m look for my first opportunity as a Frontend or Fullstack developer, i just love to code & learn new stuff, and i want to becomse a MASTER in this field! i just need the chance to prove myself! contact me on dolya7kk@gmail.com 🤩', color: '#5D00FF', admin: true },
+    { name: 'ANDREY_DOLYA_🦊', msg: 'i\'m looking for my first opportunity as a Frontend or Fullstack developer, i just love to code & learn new stuff, and i want to becomse a MASTER in this field! i just need the chance to prove myself! contact me on dolya7kk@gmail.com 🤩', color: '#5D00FF', admin: true },
+    { name: 'ANDREY_DOLYA_🦊', msg: 'i\'m looking for my first opportunity as a Frontend or Fullstack developer, i just love to code & learn new stuff, and i want to becomse a MASTER in this field! i just need the chance to prove myself! contact me on dolya7kk@gmail.com 🤩', color: '#5D00FF', admin: true },
     { name: 'Eilon_Shetrit', msg: 'HELLO !', color: '#414a4c' },
     { name: 'Conor1990', msg: 'guys, i\'m building a trading bot, anyone have an experience with Binance API? !', color: '#414a4c' },
     { name: 'Kepler-B180', msg: 'Conor use CCXT, its uses the same api for all the exchanges', color: '#1A0068' },
@@ -62,7 +63,16 @@ var gData = [
 
 
 function sendMessage() {
-    return gData[getRandomInt(0, gData.length - 1)];
+    if (gIsWorking) {
+        return gData[getRandomInt(0, gData.length - 1)];
+    }
+    else {
+        return;
+    }
+}
+
+function stopBotService(command) {
+    gIsWorking = command;
 }
 
 function getRandomInt(min, max) {

@@ -9,13 +9,12 @@ import { chatBotService } from '../services/chatBotService';
 export default function Chat(props) {
     const userMsgRef = useRef();
     const scrollRef = useRef();
-    const emojiRef = useRef();
     const [msgList, setMsgList] = useState([]);
     const [msgHistory, setMsgHistory] = useState([]);
     const [chosenEmoji, setChosenEmoji] = useState(null);
     var [showEmojis, setToggleEmojis] = useState(false);
+    var [botService, setBotService] = useState(true);
     const [joined, setJoined] = useState(false);
-    const [userJoined, setUserJoined] = useState({});
 
 
     useEffect(() => {
@@ -42,25 +41,38 @@ export default function Chat(props) {
     useEffect(() => {
         socketService.emit('is-joined', props.location.state.user);
         socketService.on('user-joined', user => {
-            setJoined(true);
-            setUserJoined(user);
-            var interval;
-            interval = setInterval(() => {
-                setJoined(false);
-                clearInterval(interval);
-            }, 5000)
+            var userJoined = { name: 'System_Message', msg: user.name + ' has joined to the chat', color: '#00000', bgc: '#BEBEBE' };
+            socketService.emit('send-msg', userJoined);
         })
     }, [])
 
     useEffect(() => {
         var interval;
-        interval = setInterval(() => {
-            socketService.emit('send-msg', chatBotService.sendMessage());
-        }, chatBotService.getRandomInt(1500, 4000))
+        socketService.on('set-bots', arg => {
+            setBotService(arg);
+        });
+        if (botService) {
+            interval = setInterval(() => {
+                socketService.emit('send-msg', chatBotService.sendMessage());
+            }, chatBotService.getRandomInt(1500, 4000))
+        }
         return () => {
             clearInterval(interval)
         }
-    }, []);
+    }, [botService]);
+
+
+
+
+    function activateBotService() {
+        setBotService(botService = !botService);
+        socketService.emit('bots-control', botService);
+        var botActive = { name: 'System_Message', msg: 'Bot Service Activated', color: '#00000', bgc: '#BEBEBE' };
+        var botDeactive = { name: 'System_Message', msg: 'Bot Service Deactivated', color: '#00000', bgc: '#BEBEBE' };
+
+        if (botService) socketService.emit('send-msg', botActive);
+        else socketService.emit('send-msg', botDeactive);
+    }
 
     function handleChatMsg(event) {
         event.preventDefault();
@@ -99,8 +111,10 @@ export default function Chat(props) {
 
     return (
         <div className="chat-window" ref={scrollRef}>
-            <div>
-                <h3>{props.match.params.id} Chat. {joined && <p className="joined">{userJoined.name} is joined to the chat room!</p>}</h3>
+            <div className="bots">
+                <h3>{props.match.params.id} Chat.
+                    <label>Bots<input type="checkbox" onChange={activateBotService} checked={botService} /></label>
+                </h3>
             </div>
 
 
@@ -116,8 +130,8 @@ export default function Chat(props) {
                 {msgList.map((msg, idx) => {
                     return (
                         <div key={idx} className="user-msg">
-                            <p className="msg-name" style={{ color: msg.color }}>{msg.name}:</p>
-                            <p className="msg" style={{ color: msg.admin === true ? msg.color : '#000000' }}>{msg.msg}</p>
+                            <p className="msg-name" style={{ color: msg.color, backgroundColor: msg.bgc ? msg.bgc : null }}>{msg.name}:</p>
+                            <p className="msg" style={{ color: msg.admin === true ? msg.color : '#000000', backgroundColor: msg.bgc ? msg.bgc : null }}>{msg.msg}</p>
                         </div>
                     )
                 })}

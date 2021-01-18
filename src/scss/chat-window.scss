@@ -1,3 +1,9 @@
+input[type=checkbox]:before{
+    color:red;
+    background-color: red;
+    border:1px solid green;
+}
+
 .chat-window{
     width:1400px;
     margin:2rem auto;
@@ -12,15 +18,22 @@
     h3{
         padding:15px 0px 15px 10px;
         background-color:  rgb(0, 192, 118);
-        // background-image: url('../assets/2578740.jpg');
-        // background-repeat: no-repeat;
-        // background-position-y: 20%;
         color:white;
         position: fixed;
         width:1399px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        label{
+            display: flex;
+            align-items: center;
+            margin-right:1rem;
+            input{
+                margin-left:5px;
+                width:30px;
+                height:20px;
+            }
+        }
         p{
             margin-right:2rem;
             color:rgb(255, 255, 255);
@@ -202,7 +215,14 @@
             .mobile-input{
                 display:flex;
                 input{
-                    width:405px;
+                    width:450px;
+                }
+                .smiley{
+                    display: none;
+                }
+                .button{
+                    position: absolute;
+                   top:0px;
                 }
             }
         }
@@ -232,6 +252,7 @@
         form{
             flex-direction: column;
             align-items: flex-start;
+            height:20vh;
             input{
                 width:310px;
             }
@@ -241,8 +262,15 @@
             }
             .mobile-input{
                 display:flex;
+                
                 input{
-                    width:305px;
+                    width:350px;
+                    // position: absolute;
+                    
+                }
+                button{
+                    position: absolute;
+                   top:0px;
                 }
             }
         }
@@ -277,12 +305,12 @@
             }
             button{
                 margin-top:5px;
-                width:305px;
+                width:300px;
             }
             .mobile-input{
                 display:flex;
                 input{
-                    width:260px;
+                    width:300px;
                 }
             }
         }

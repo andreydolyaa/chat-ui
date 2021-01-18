@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { SignOutIcon, CommentDiscussionIcon, SignInIcon } from '@primer/octicons-react';
 import { Link, useHistory } from 'react-router-dom';
+import { socketService } from './../services/socketService';
+import { chatBotService } from '../services/chatBotService';
 
 
 
@@ -28,6 +30,7 @@ export default function Navbar({ user, logout }) {
     function closeMenu() {
         setOpen(false);
     }
+
 
     return (
         <div>
